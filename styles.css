@@ -11,6 +11,7 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: var(--background-color);
@@ -22,7 +23,16 @@ body {
 
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   border: 2px solid var(--foreground-color);
+}
+
+.grid-row {
+  display: flex;
+  flex: 1;
+}
+
+.grid-pixel {
+  flex: 1;
+  border: 1px solid var(--foreground-color);
 }
