@@ -1,4 +1,5 @@
 const container = document.querySelector(".container");
+const button = document.querySelector(".button-new-grid");
 let gridSize = 16;
 
 resizeCanvas();
@@ -6,6 +7,7 @@ createGrid(gridSize);
 addGridDraw();
 
 window.addEventListener("resize", resizeCanvas);
+button.addEventListener("click", createNewGrid);
 
 // Make canvas a square constrained by smallest window dimension
 function resizeCanvas() {
@@ -13,9 +15,15 @@ function resizeCanvas() {
   let windowWidth = window.innerWidth;
 
   if (windowHeight >= windowWidth) {
-    container.setAttribute("style", `width: ${windowWidth * 0.9}px; height: ${windowWidth * 0.9}px;`)
+    container.setAttribute(
+      "style",
+      `width: ${windowWidth * 0.9}px; height: ${windowWidth * 0.9}px;`
+    );
   } else {
-    container.setAttribute("style", `width: ${windowHeight * 0.9}px; height: ${windowHeight * 0.9}px;`)
+    container.setAttribute(
+      "style",
+      `width: ${windowHeight * 0.9}px; height: ${windowHeight * 0.9}px;`
+    );
   }
 }
 
@@ -31,6 +39,29 @@ function createGrid(gridSize) {
       newRow.appendChild(newPixel);
     }
   }
+}
+
+function createNewGrid() {
+  function getGridSize() {
+    let size = prompt(
+      "Select new grid size by entering a number between 1 and 100."
+    );
+    size = Number(size);
+    return size;
+  }
+
+  gridSize = getGridSize();
+  while (!(1 <= gridSize <= 100) || isNaN(gridSize)) {
+    alert("Invalid input!");
+    gridSize = getGridSize();
+  }
+
+  let rowList = document.querySelectorAll(".grid-row");
+  rowList.forEach((row) => {
+    row.parentNode.removeChild(row);
+  });
+  createGrid(gridSize);
+  addGridDraw();
 }
 
 function addGridDraw() {
