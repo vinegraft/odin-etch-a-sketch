@@ -3,6 +3,7 @@ let gridSize = 16;
 
 resizeCanvas();
 createGrid(gridSize);
+addGridDraw();
 
 window.addEventListener("resize", resizeCanvas);
 
@@ -18,7 +19,7 @@ function resizeCanvas() {
   }
 }
 
-function createGrid(size) {
+function createGrid(gridSize) {
   for (i = 0; i < gridSize; i++) {
     let newRow = document.createElement("div");
     newRow.className = "grid-row";
@@ -30,4 +31,14 @@ function createGrid(size) {
       newRow.appendChild(newPixel);
     }
   }
+}
+
+function addGridDraw() {
+  let allPixels = document.querySelectorAll(".grid-pixel");
+
+  allPixels.forEach((pixel) => {
+    pixel.addEventListener("mouseover", () => {
+      pixel.setAttribute("style", "background-color: var(--foreground-color);");
+    });
+  });
 }
