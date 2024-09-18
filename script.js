@@ -68,8 +68,13 @@ function addGridDraw() {
   let allPixels = document.querySelectorAll(".grid-pixel");
 
   allPixels.forEach((pixel) => {
+    let opacity = 0;
     pixel.addEventListener("mouseover", () => {
-      pixel.setAttribute("style", "background-color: var(--foreground-color);");
+      opacity += 0.1;
+      pixel.setAttribute(
+        "style",
+        `background-color: var(--foreground-color); opacity: ${opacity}`
+      );
     });
   });
 }
