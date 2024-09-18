@@ -44,7 +44,7 @@ function createGrid(gridSize) {
 function createNewGrid() {
   function getGridSize() {
     let size = prompt(
-      "Select new grid size by entering a number between 1 and 100."
+      "Select new resolution by entering a number between 1 and 100."
     );
     size = Number(size);
     return size;
